@@ -28,7 +28,7 @@ export default {
 
   methods: {
     startSlide: function () {
-      this.timer = setInterval(this.next, 4000);
+      this.next;
     },
 
     next: function () {

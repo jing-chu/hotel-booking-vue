@@ -60,16 +60,21 @@
         <button type="submit">BOOKING</button>
       </form>
     </div>
+    <div>
+      <Modal v-model="isBooked" />
+    </div>
   </div>
 </template>
 
 <script>
 import axios from "axios";
 import Slider from "../../../components/Slider";
+import Modal from "../../../components/Modal";
 
 export default {
   components: {
     Slider,
+    Modal,
   },
 
   data() {
@@ -77,6 +82,7 @@ export default {
       nameContact: "",
       emailContact: "",
       commentsContact: "",
+      isBooked: false,
       hotel: {},
       hotelImages: [],
     };
@@ -103,6 +109,8 @@ export default {
         )
         .then((res) => console.log(res))
         .catch((err) => console.log(err));
+
+      this.isBooked = !this.isBooked;
     },
   },
 
