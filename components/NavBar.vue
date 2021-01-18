@@ -41,6 +41,7 @@ export default {
   display: inline-block;
   background: #333;
   color: #fff;
+  border-radius: 0.25rem;
   padding: 0.3rem 1rem;
   margin-right: 0.5rem;
 }

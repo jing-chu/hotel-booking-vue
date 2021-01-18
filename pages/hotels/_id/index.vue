@@ -1,47 +1,49 @@
 <template>
   <div>
-    <div>{{ hotel.name }}</div>
-    <div class="slider">
-      <Slider
-        :id="$route.params.id"
-        :hotel="hotel"
-        :hotelImages="hotelImages"
-      />
+    <div class="flex-container">
+      <div class="slider">
+        <Slider
+          :id="$route.params.id"
+          :hotel="hotel"
+          :hotelImages="hotelImages"
+        />
+      </div>
+      <article class="hotelInfo">
+        <ul>
+          <li class="list-control">
+            <span>Name:</span>
+            <p>{{ hotel.name }}</p>
+          </li>
+          <li class="list-control">
+            <span>Address:</span>
+            <template v-for="(x, key) in hotel" v-if="key === 'address'">
+              <p>{{ x.fullAddress }}</p>
+            </template>
+          </li>
+          <li class="list-control">
+            <span>Star:</span>
+            <p>{{ hotel.starRatingTitle }}</p>
+          </li>
+          <li class="list-control">
+            <span>Note:</span>
+            <template
+              v-for="(tagline, index) in hotel.tagline"
+              v-if="index === 0"
+            >
+              <p v-html="tagline"></p>
+            </template>
+          </li>
+        </ul>
+      </article>
     </div>
-    <article class="hotelInfo">
-      <ul>
-        <li>
-          <span>Name:</span>
-          <p>{{ hotel.name }}</p>
-        </li>
-        <li>
-          <span>Address:</span>
-          <template v-for="(x, key) in hotel" v-if="key === 'address'">
-            <p>{{ x.fullAddress }}</p>
-          </template>
-        </li>
-        <li>
-          <span>Star:</span>
-          <p>{{ hotel.starRatingTitle }}</p>
-        </li>
-        <li>
-          <span>Note:</span>
-          <template
-            v-for="(tagline, index) in hotel.tagline"
-            v-if="index === 0"
-          >
-            <p v-html="tagline"></p>
-          </template>
-        </li>
-      </ul>
-    </article>
+
     <div>
-      <form @submit.prevent="onSubmit">
-        <div>
+      <form @submit.prevent="onSubmit" class="form">
+        <div class="form-control">
           <label for="name">Name</label>
           <input class="input" type="text" v-model="nameContact" name="name" />
         </div>
-        <div>
+        <div class="form-control">
           <label for="email">Email</label>
           <input
             class="input"
@@ -55,9 +57,11 @@
             class="input"
             v-model="commentsContact"
             placeholder="comments"
+            rows="5"
+            cols="45"
           />
         </div>
-        <button type="submit">BOOKING</button>
+        <button type="submit" class="btn">BOOKING</button>
       </form>
     </div>
     <div>
@@ -187,4 +191,49 @@ export default {
 </script>
 
 <style>
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.list-control {
+  margin: 0 1rem;
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  align-items: center;
+}
+
+.form {
+  background: #fff;
+  max-width: 450px;
+  margin: 0 auto;
+  margin-bottom: 4rem;
+  padding: 1rem 2rem;
+  border-radius: 0.25rem;
+}
+.form input,
+textarea {
+  background: hsl(210, 36%, 96%);
+  border-color: transparent;
+  border-radius: 0.25rem;
+  padding: 0.25rem 0.5rem;
+}
+.form-control {
+  margin: 0.5rem 0;
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  align-items: center;
+}
+.form button {
+  display: inline-block;
+  background: #333;
+  color: #fff;
+  border-color: transparent;
+  margin-top: 1rem;
+  text-transform: capitalize;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  padding: 0.3rem 1rem;
+}
 </style>

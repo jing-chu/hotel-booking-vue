@@ -1,19 +1,19 @@
 <template>
-  <div>
+  <div class="container">
     <form class="form" @submit.prevent="submitForm">
-      <div>
+      <div class="form-control">
         <label for="city">City</label>
         <input class="input" type="text" v-model="cityName" name="city" />
       </div>
-      <div>
+      <div class="form-control">
         <label for="dateFrom">Check In</label>
         <input class="input" type="date" v-model="dateCheckIn" />
       </div>
-      <div>
+      <div class="form-control">
         <label for="dateTo">Check Out</label>
         <input class="input" type="date" v-model="dateCheckOut" />
       </div>
-      <div>
+      <div class="form-control">
         <label for="city">Adults</label>
         <input
           type="number"
@@ -27,7 +27,7 @@
         <button type="submit" class="btn">Search</button>
       </div>
     </form>
-    <div>
+    <div class="hotels">
       <Hotel
         v-for="hotel in hotels"
         :key="hotel.id"
@@ -136,6 +136,12 @@ export default {
 </script>
 
 <style>
+.hotels {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin: 3rem auto;
+}
 .form {
   background: #fff;
   max-width: 450px;
@@ -150,15 +156,22 @@ export default {
   border-radius: 0.25rem;
   padding: 0.25rem 0.5rem;
 }
+.form-control {
+  margin: 0.5rem 0;
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  align-items: center;
+}
 .form button {
   display: inline-block;
-  background: #222;
+  background: #333;
   color: #fff;
+  border-color: transparent;
   margin-top: 1rem;
-  letter-spacing: 0.1rem;
-  padding: 0.15rem 0.25rem;
   text-transform: capitalize;
   border-radius: 0.25rem;
   cursor: pointer;
+  border-radius: 0.25rem;
+  padding: 0.3rem 1rem;
 }
 </style>

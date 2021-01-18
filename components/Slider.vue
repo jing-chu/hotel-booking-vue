@@ -53,17 +53,15 @@ export default {
 <style>
 .prev,
 .next {
+  display: inline-block;
+  background: #333;
+  color: #fff;
+  border-color: transparent;
+  margin-top: 1rem;
+  text-transform: capitalize;
+  border-radius: 0.25rem;
   cursor: pointer;
-  top: 40%;
-  width: auto;
-  padding: 5px;
-  color: white;
-  background-color: rgba(0, 0, 0, 0.9);
-  font-weight: bold;
-  font-size: 14px;
-  transition: 0.7s ease;
-  border-radius: 0 4px 4px 0;
-  text-decoration: none;
-  user-select: none;
+  border-radius: 0.25rem;
+  padding: 0.3rem 1rem;
 }
 </style>
