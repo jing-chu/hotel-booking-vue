@@ -70,7 +70,7 @@ export default {
         params: { query: this.cityName, locale: "en_US" },
         headers: {
           "x-rapidapi-key":
-            "824c162859msh99a656af9fb4804p1d8721jsn37a5fb23576a",
+            "25670207fbmsh89696375d639f1bp1096e1jsn690ff96fa0a6",
           "x-rapidapi-host": "hotels4.p.rapidapi.com",
         },
       };
@@ -99,7 +99,7 @@ export default {
             },
             headers: {
               "x-rapidapi-key":
-                "824c162859msh99a656af9fb4804p1d8721jsn37a5fb23576a",
+                "25670207fbmsh89696375d639f1bp1096e1jsn690ff96fa0a6",
               "x-rapidapi-host": "hotels4.p.rapidapi.com",
             },
           };

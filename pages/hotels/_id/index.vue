@@ -16,7 +16,9 @@
         </li>
         <li>
           <span>Address:</span>
-          <p>{{ hotel.address.fullAddress }}</p>
+          <template v-for="(x, key) in hotel" v-if="key === 'address'">
+            <p>{{ x.fullAddress }}</p>
+          </template>
         </li>
         <li>
           <span>Star:</span>
@@ -24,12 +26,37 @@
         </li>
         <li>
           <span>Note:</span>
-          <p>{{ hotel.tagline[0] }}</p>
+          <template
+            v-for="(tagline, index) in hotel.tagline"
+            v-if="index === 0"
+          >
+            <p v-html="tagline"></p>
+          </template>
         </li>
       </ul>
     </article>
     <div>
       <form @submit.prevent="onSubmit">
+        <div>
+          <label for="name">Name</label>
+          <input class="input" type="text" v-model="nameContact" name="name" />
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <input
+            class="input"
+            type="text"
+            v-model="emailContact"
+            name="email"
+          />
+        </div>
+        <div>
+          <textarea
+            class="input"
+            v-model="commentsContact"
+            placeholder="comments"
+          />
+        </div>
         <button type="submit">BOOKING</button>
       </form>
     </div>
@@ -47,6 +74,9 @@ export default {
 
   data() {
     return {
+      nameContact: "",
+      emailContact: "",
+      commentsContact: "",
       hotel: {},
       hotelImages: [],
     };
@@ -61,9 +91,9 @@ export default {
         persons: this.$route.query.adultsNumber,
         booking_date_from: this.$route.query.dateCheckIn,
         booking_date_until: this.$route.query.dateCheckOut,
-        comments: "",
-        customer_name: "",
-        customer_email: "jinjing@gmail.com",
+        comments: this.commentsContact,
+        customer_name: this.nameContact,
+        customer_email: this.emailContact,
       };
       console.log(bookingData);
       axios
@@ -90,7 +120,7 @@ export default {
         checkIn: "2020-01-08",
       },
       headers: {
-        "x-rapidapi-key": "824c162859msh99a656af9fb4804p1d8721jsn37a5fb23576a",
+        "x-rapidapi-key": "25670207fbmsh89696375d639f1bp1096e1jsn690ff96fa0a6",
         "x-rapidapi-host": "hotels4.p.rapidapi.com",
       },
     };
@@ -106,7 +136,7 @@ export default {
           params: { id: this.$route.params.id },
           headers: {
             "x-rapidapi-key":
-              "824c162859msh99a656af9fb4804p1d8721jsn37a5fb23576a",
+              "25670207fbmsh89696375d639f1bp1096e1jsn690ff96fa0a6",
             "x-rapidapi-host": "hotels4.p.rapidapi.com",
           },
         };
