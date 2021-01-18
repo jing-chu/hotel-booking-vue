@@ -2,7 +2,7 @@
   <div class="modal" v-show="value">
     <div class="modal-container">
       <p>Please confirm your booking</p>
-      <nuxt-link to="hotels/">
+      <nuxt-link to="../hotels/">
         <button>Confirm</button>
       </nuxt-link>
     </div>
