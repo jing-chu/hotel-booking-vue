@@ -42,7 +42,6 @@
             </ul>
           </article>
         </div>
-        <hr />
         <div>
           <form @submit.prevent="onSubmit" class="form">
             <div class="form-control">
@@ -91,18 +90,18 @@ import Modal from "../../../components/Modal";
 export default {
   components: {
     Slider,
-    Modal,
+    Modal
   },
 
   data() {
     return {
+      isLoading: true,
+      isBooked: false,
       nameContact: "",
       emailContact: "",
       commentsContact: "",
-      isBooked: false,
       hotel: {},
-      hotelImages: [],
-      isLoading: true,
+      hotelImages: []
     };
   },
 
@@ -117,7 +116,7 @@ export default {
         booking_date_until: this.$route.query.dateCheckOut,
         comments: this.commentsContact,
         customer_name: this.nameContact,
-        customer_email: this.emailContact,
+        customer_email: this.emailContact
       };
       console.log(bookingData);
       axios
@@ -125,11 +124,11 @@ export default {
           "https://ovu1b6gga2.execute-api.us-east-1.amazonaws.com/production/",
           bookingData
         )
-        .then((res) => console.log(res))
-        .catch((err) => console.log(err));
+        .then(res => console.log(res))
+        .catch(err => console.log(err));
 
       this.isBooked = !this.isBooked;
-    },
+    }
   },
 
   created() {
@@ -143,17 +142,17 @@ export default {
         currency: "USD",
         checkOut: "2020-01-15",
         adults1: "1",
-        checkIn: "2020-01-08",
+        checkIn: "2020-01-08"
       },
       headers: {
         "x-rapidapi-key": "25670207fbmsh89696375d639f1bp1096e1jsn690ff96fa0a6",
-        "x-rapidapi-host": "hotels4.p.rapidapi.com",
-      },
+        "x-rapidapi-host": "hotels4.p.rapidapi.com"
+      }
     };
 
     axios
       .request(options)
-      .then((response) => {
+      .then(response => {
         this.hotel = response.data.data.body.propertyDescription;
         console.log(this.hotel);
         const options = {
@@ -163,13 +162,13 @@ export default {
           headers: {
             "x-rapidapi-key":
               "25670207fbmsh89696375d639f1bp1096e1jsn690ff96fa0a6",
-            "x-rapidapi-host": "hotels4.p.rapidapi.com",
-          },
+            "x-rapidapi-host": "hotels4.p.rapidapi.com"
+          }
         };
 
         return axios
           .request(options)
-          .then((response) => {
+          .then(response => {
             console.log(response.data.hotelImages);
             const images = response.data.hotelImages;
             const image5 = [];
@@ -181,11 +180,11 @@ export default {
             this.isLoading = false;
             console.log(this.hotelImages);
           })
-          .catch(function (error) {
+          .catch(function(error) {
             console.error(error);
           });
       })
-      .catch(function (error) {
+      .catch(function(error) {
         console.error(error);
       });
   },
@@ -195,13 +194,13 @@ export default {
       title: "Hotel informarion",
       meta: [
         {
-          hid: "hotel searching",
-          nane: "hotel searching",
-          content: "Best place for hotel searching",
-        },
-      ],
+          hid: "hotel searching and booking",
+          nane: "hotel searching and booking",
+          content: "Best place for hotel searching and booking"
+        }
+      ]
     };
-  },
+  }
 };
 </script>
 
@@ -231,9 +230,9 @@ export default {
 }
 
 .form {
-  background: #fff;
+  background: var(--bg);
   max-width: 450px;
-  margin: 0 auto;
+  margin: 1rem auto;
   margin-bottom: 4rem;
   padding: 1rem 2rem;
   border-radius: 0.25rem;

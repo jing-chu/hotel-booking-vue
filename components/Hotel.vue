@@ -2,11 +2,11 @@
   <nuxt-link
     :to="{
       path: '/hotels/' + id,
-      query: { dateCheckIn, dateCheckOut, adultsNumber },
+      query: { dateCheckIn, dateCheckOut, adultsNumber }
     }"
   >
     <div>
-      <ul class="hotels">
+      <ul class="hotels-container">
         <li :key="id">
           <img :src="hotelImg" :alt="hotelName" />
           <div>
@@ -29,24 +29,31 @@ export default {
     "price",
     "dateCheckIn",
     "dateCheckOut",
-    "adultsNumber",
-  ],
+    "adultsNumber"
+  ]
 };
 </script>
 
 <style>
-.hotels li {
+.hotels-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin: 3rem auto;
+}
+
+.hotels-container li {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #fff;
+  background: var(--bg-secondary);
   padding: 1rem 2rem;
   border-radius: 0.25rem;
   text-align: left;
 }
 
-.hotels h4 {
+.hotels-container h4 {
   margin: 1rem 0;
 }
 </style>

@@ -29,13 +29,13 @@ export default {
       title: "Login",
       meta: [
         {
-          hid: "hotel searching",
-          nane: "hotel searching",
-          content: "Best place for hotel searching",
-        },
-      ],
+          hid: "hotel searching and booking",
+          nane: "hotel searching and booking",
+          content: "Best place for hotel searching and booking"
+        }
+      ]
     };
-  },
+  }
 };
 </script>
 
@@ -47,7 +47,7 @@ export default {
   margin: 1rem;
 }
 .form {
-  background: #fff;
+  background: var(--bg);
   max-width: 450px;
   margin: 0 auto;
   margin-bottom: 4rem;

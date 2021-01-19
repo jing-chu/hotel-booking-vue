@@ -2,7 +2,7 @@
   <div>
     <div cass="imgSlider">
       <div v-for="i in [currentIndex]" :key="i">
-        <img class="hotelImg" :src="currentImg" width="200" height="150" />
+        <img class="hotelImg" :src="currentImg" width="230" height="180" />
       </div>
       <a class="prev" @click="prev" href="#">&#10094; Previous</a>
       <a class="next" @click="next" href="#">&#10095; Next</a>
@@ -18,41 +18,42 @@ export default {
   data() {
     return {
       timer: null,
-      currentIndex: 1,
+      currentIndex: 1
     };
   },
 
-  mounted: function () {
+  mounted: function() {
     this.startSlide();
   },
 
   methods: {
-    startSlide: function () {
+    startSlide: function() {
       this.next;
     },
 
-    next: function () {
+    next: function() {
       this.currentIndex += 1;
     },
 
-    prev: function () {
+    prev: function() {
       this.currentIndex -= 1;
-    },
+    }
   },
 
   computed: {
-    currentImg: function () {
+    currentImg: function() {
       return this.hotelImages[
         Math.abs(this.currentIndex) % this.hotelImages.length
       ];
-    },
-  },
+    }
+  }
 };
 </script>
 
 <style>
 .prev,
 .next {
+  width: 7rem;
   display: inline-block;
   background: #333;
   color: #fff;

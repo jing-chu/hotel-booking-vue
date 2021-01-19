@@ -10,8 +10,8 @@ import NavBar from "../components/NavBar";
 
 export default {
   components: {
-    NavBar,
-  },
+    NavBar
+  }
 };
 </script>
 
@@ -20,13 +20,6 @@ export default {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-}
-
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 1rem;
-  line-height: 1.6;
-  background: #f4f4f4;
 }
 
 a {
@@ -44,6 +37,6 @@ ul {
   margin: 2rem auto;
   overflow: hidden;
   padding: 1rem 2rem;
-  background: #fff;
+  background: var(--bg-secondary);
 }
 </style>

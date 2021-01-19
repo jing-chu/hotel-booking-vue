@@ -28,7 +28,7 @@
         </div>
       </form>
       <p class="loading" v-if="isLoading">Loading...</p>
-      <div v-else class="hotels-container">
+      <div v-else>
         <Hotel
           v-for="hotel in hotels"
           :key="hotel.id"
@@ -51,7 +51,7 @@ import Hotel from "../../components/Hotel";
 
 export default {
   components: {
-    Hotel,
+    Hotel
   },
 
   data() {
@@ -61,7 +61,7 @@ export default {
       dateCheckOut: "",
       adultsNumber: 1,
       hotels: [],
-      isLoading: false,
+      isLoading: false
     };
   },
 
@@ -75,13 +75,13 @@ export default {
         headers: {
           "x-rapidapi-key":
             "25670207fbmsh89696375d639f1bp1096e1jsn690ff96fa0a6",
-          "x-rapidapi-host": "hotels4.p.rapidapi.com",
-        },
+          "x-rapidapi-host": "hotels4.p.rapidapi.com"
+        }
       };
 
       axios
         .request(options)
-        .then((response) => {
+        .then(response => {
           console.log(response.data);
           const destinationId =
             response.data.suggestions[0].entities[0].destinationId;
@@ -99,30 +99,30 @@ export default {
               adults1: this.adultsNumber,
               currency: "USD",
               locale: "en_US",
-              sortOrder: "PRICE",
+              sortOrder: "PRICE"
             },
             headers: {
               "x-rapidapi-key":
                 "25670207fbmsh89696375d639f1bp1096e1jsn690ff96fa0a6",
-              "x-rapidapi-host": "hotels4.p.rapidapi.com",
-            },
+              "x-rapidapi-host": "hotels4.p.rapidapi.com"
+            }
           };
 
           return axios
             .request(options)
-            .then((response) => {
+            .then(response => {
               this.isLoading = false;
               console.log(response.data.data.body.searchResults.results);
               this.hotels = response.data.data.body.searchResults.results;
             })
-            .catch(function (error) {
+            .catch(function(error) {
               console.error(error);
             });
         })
-        .catch(function (error) {
+        .catch(function(error) {
           console.error(error);
         });
-    },
+    }
   },
 
   head() {
@@ -130,13 +130,13 @@ export default {
       title: "Search Hotel",
       meta: [
         {
-          hid: "hotel searching",
-          nane: "hotel searching",
-          content: "Best place for hotel searching",
-        },
-      ],
+          hid: "hotel searching and booking",
+          nane: "hotel searching and booking",
+          content: "Best place for hotel searching and booking"
+        }
+      ]
     };
-  },
+  }
 };
 </script>
 
@@ -148,16 +148,8 @@ export default {
   margin: 1rem;
 }
 
-.hotels-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin: 3rem auto;
-  border: 1px solod black;
-}
-
 .form {
-  background: #fff;
+  background: var(--bg);
   max-width: 450px;
   margin: 0 auto;
   margin-bottom: 4rem;

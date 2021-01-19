@@ -14,5 +14,7 @@
     "nuxt": "^2.14.6",
     "vuejs-datepicker": "^1.6.2"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@nuxtjs/color-mode": "^2.0.2"
+  }
 }
