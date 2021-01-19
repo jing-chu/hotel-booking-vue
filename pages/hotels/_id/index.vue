@@ -107,6 +107,9 @@ export default {
 
   methods: {
     onSubmit() {
+      if (!confirm("Please confirm your booking.")) {
+        return;
+      }
       const bookingData = {
         hotel_name: this.hotel.name,
         hotel_id: this.$route.params.id,

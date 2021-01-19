@@ -1,9 +1,9 @@
 <template>
   <div class="modal" v-show="value">
     <div class="modal-container">
-      <p>Please confirm your booking</p>
+      <p>You have successfully booked the hotel.</p>
       <nuxt-link to="../hotels/">
-        <button class="button">Confirm</button>
+        <button class="button">OK</button>
       </nuxt-link>
     </div>
   </div>
