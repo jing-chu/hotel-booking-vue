@@ -1,44 +1,46 @@
 <template>
-  <div class="container">
-    <form class="form" @submit.prevent="submitForm">
-      <div class="form-control">
-        <label for="city">City</label>
-        <input class="input" type="text" v-model="cityName" name="city" />
-      </div>
-      <div class="form-control">
-        <label for="dateFrom">Check In</label>
-        <input class="input" type="date" v-model="dateCheckIn" />
-      </div>
-      <div class="form-control">
-        <label for="dateTo">Check Out</label>
-        <input class="input" type="date" v-model="dateCheckOut" />
-      </div>
-      <div class="form-control">
-        <label for="city">Adults</label>
-        <input
-          type="number"
-          class="input"
-          v-model="adultsNumber"
-          name="adults"
+  <div>
+    <div class="main-container">
+      <form class="form" @submit.prevent="submitForm">
+        <div class="form-control">
+          <label for="city">City</label>
+          <input class="input" type="text" v-model="cityName" name="city" />
+        </div>
+        <div class="form-control">
+          <label for="dateFrom">Check In</label>
+          <input class="input" type="date" v-model="dateCheckIn" />
+        </div>
+        <div class="form-control">
+          <label for="dateTo">Check Out</label>
+          <input class="input" type="date" v-model="dateCheckOut" />
+        </div>
+        <div class="form-control">
+          <label for="city">Adults</label>
+          <input
+            type="number"
+            class="input"
+            v-model="adultsNumber"
+            name="adults"
+          />
+        </div>
+        <div>
+          <button type="submit" class="btn">Search</button>
+        </div>
+      </form>
+      <p class="loading" v-if="isLoading">Loading...</p>
+      <div v-else class="hotels-container">
+        <Hotel
+          v-for="hotel in hotels"
+          :key="hotel.id"
+          :id="hotel.id"
+          :hotelName="hotel.name"
+          :hotelImg="hotel.thumbnailUrl"
+          :price="hotel.ratePlan.price.current"
+          :dateCheckIn="dateCheckIn"
+          :dateCheckOut="dateCheckOut"
+          :adultsNumber="adultsNumber"
         />
       </div>
-
-      <div>
-        <button type="submit" class="btn">Search</button>
-      </div>
-    </form>
-    <div class="hotels">
-      <Hotel
-        v-for="hotel in hotels"
-        :key="hotel.id"
-        :id="hotel.id"
-        :hotelName="hotel.name"
-        :hotelImg="hotel.thumbnailUrl"
-        :price="hotel.ratePlan.price.current"
-        :dateCheckIn="dateCheckIn"
-        :dateCheckOut="dateCheckOut"
-        :adultsNumber="adultsNumber"
-      />
     </div>
   </div>
 </template>
@@ -59,11 +61,13 @@ export default {
       dateCheckOut: "",
       adultsNumber: 1,
       hotels: [],
+      isLoading: false,
     };
   },
 
   methods: {
     submitForm() {
+      this.isLoading = true;
       const options = {
         method: "GET",
         url: "https://hotels4.p.rapidapi.com/locations/search",
@@ -107,6 +111,7 @@ export default {
           return axios
             .request(options)
             .then((response) => {
+              this.isLoading = false;
               console.log(response.data.data.body.searchResults.results);
               this.hotels = response.data.data.body.searchResults.results;
             })
@@ -136,12 +141,21 @@ export default {
 </script>
 
 <style>
-.hotels {
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem;
+}
+
+.hotels-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
   margin: 3rem auto;
+  border: 1px solod black;
 }
+
 .form {
   background: #fff;
   max-width: 450px;

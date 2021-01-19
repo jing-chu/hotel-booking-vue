@@ -6,14 +6,15 @@
     }"
   >
     <div>
-      <ul class="hotels"></ul>
-      <li>
-        <img :src="hotelImg" :alt="hotelName" />
-        <div>
-          <h4>{{ hotelName }}</h4>
-          <p>{{ price }}</p>
-        </div>
-      </li>
+      <ul class="hotels">
+        <li :key="id">
+          <img :src="hotelImg" :alt="hotelName" />
+          <div>
+            <h4>{{ hotelName }}</h4>
+            <p>{{ price }}</p>
+          </div>
+        </li>
+      </ul>
     </div>
   </nuxt-link>
 </template>
@@ -46,6 +47,6 @@ export default {
 }
 
 .hotels h4 {
-  margin-bottom: 0.15rem;
+  margin: 1rem 0;
 }
 </style>

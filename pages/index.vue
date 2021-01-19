@@ -1,5 +1,5 @@
 <template>
-  <div class="login_container">
+  <div class="main_container">
     <img
       src="/color_logo_no_background.png"
       alt="logo"
@@ -40,10 +40,11 @@ export default {
 </script>
 
 <style>
-.login_container {
+.main_container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 1rem;
 }
 .form {
   background: #fff;

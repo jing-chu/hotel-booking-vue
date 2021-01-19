@@ -2,7 +2,7 @@
   <div>
     <div cass="imgSlider">
       <div v-for="i in [currentIndex]" :key="i">
-        <img class="hotelImg" :src="currentImg" />
+        <img class="hotelImg" :src="currentImg" width="200" height="150" />
       </div>
       <a class="prev" @click="prev" href="#">&#10094; Previous</a>
       <a class="next" @click="next" href="#">&#10095; Next</a>

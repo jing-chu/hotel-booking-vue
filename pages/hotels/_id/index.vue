@@ -1,71 +1,84 @@
 <template>
   <div>
-    <div class="flex-container">
-      <div class="slider">
-        <Slider
-          :id="$route.params.id"
-          :hotel="hotel"
-          :hotelImages="hotelImages"
-        />
-      </div>
-      <article class="hotelInfo">
-        <ul>
-          <li class="list-control">
-            <span>Name:</span>
-            <p>{{ hotel.name }}</p>
-          </li>
-          <li class="list-control">
-            <span>Address:</span>
-            <template v-for="(x, key) in hotel" v-if="key === 'address'">
-              <p>{{ x.fullAddress }}</p>
-            </template>
-          </li>
-          <li class="list-control">
-            <span>Star:</span>
-            <p>{{ hotel.starRatingTitle }}</p>
-          </li>
-          <li class="list-control">
-            <span>Note:</span>
-            <template
-              v-for="(tagline, index) in hotel.tagline"
-              v-if="index === 0"
-            >
-              <p v-html="tagline"></p>
-            </template>
-          </li>
-        </ul>
-      </article>
-    </div>
-
-    <div>
-      <form @submit.prevent="onSubmit" class="form">
-        <div class="form-control">
-          <label for="name">Name</label>
-          <input class="input" type="text" v-model="nameContact" name="name" />
+    <div class="main-container">
+      <p class="loading" v-if="isLoading">Loading...</p>
+      <template v-else>
+        <nuxt-link class="back-to-search" to="/hotels"
+          >Back to Serach</nuxt-link
+        >
+        <div class="flex-container">
+          <div class="slider">
+            <Slider
+              :id="$route.params.id"
+              :hotel="hotel"
+              :hotelImages="hotelImages"
+            />
+          </div>
+          <article class="hotelInfo">
+            <ul>
+              <li class="list-control">
+                <span>Name:</span>
+                <p>{{ hotel.name }}</p>
+              </li>
+              <li class="list-control">
+                <span>Address:</span>
+                <template v-for="(x, key) in hotel" v-if="key === 'address'">
+                  <p>{{ x.fullAddress }}</p>
+                </template>
+              </li>
+              <li class="list-control">
+                <span>Star:</span>
+                <p>{{ hotel.starRatingTitle }}</p>
+              </li>
+              <li class="list-control">
+                <span>Note:</span>
+                <template
+                  v-for="(tagline, index) in hotel.tagline"
+                  v-if="index === 0"
+                >
+                  <p v-html="tagline"></p>
+                </template>
+              </li>
+            </ul>
+          </article>
         </div>
-        <div class="form-control">
-          <label for="email">Email</label>
-          <input
-            class="input"
-            type="text"
-            v-model="emailContact"
-            name="email"
-          />
+        <hr />
+        <div>
+          <form @submit.prevent="onSubmit" class="form">
+            <div class="form-control">
+              <label for="name">Name</label>
+              <input
+                class="input"
+                type="text"
+                v-model="nameContact"
+                name="name"
+              />
+            </div>
+            <div class="form-control">
+              <label for="email">Email</label>
+              <input
+                class="input"
+                type="text"
+                v-model="emailContact"
+                name="email"
+              />
+            </div>
+            <div>
+              <textarea
+                class="input"
+                v-model="commentsContact"
+                placeholder="comments"
+                rows="5"
+                cols="45"
+              />
+            </div>
+            <button type="submit" class="btn">BOOKING</button>
+          </form>
         </div>
         <div>
-          <textarea
-            class="input"
-            v-model="commentsContact"
-            placeholder="comments"
-            rows="5"
-            cols="45"
-          />
+          <Modal v-model="isBooked" />
         </div>
-        <button type="submit" class="btn">BOOKING</button>
-      </form>
-    </div>
-    <div>
-      <Modal v-model="isBooked" />
+      </template>
     </div>
   </div>
 </template>
@@ -89,6 +102,7 @@ export default {
       isBooked: false,
       hotel: {},
       hotelImages: [],
+      isLoading: true,
     };
   },
 
@@ -164,6 +178,7 @@ export default {
               image5.push(formedArr);
             }
             this.hotelImages = image5;
+            this.isLoading = false;
             console.log(this.hotelImages);
           })
           .catch(function (error) {
@@ -191,11 +206,23 @@ export default {
 </script>
 
 <style>
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem;
+}
+
 .flex-container {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  margin-top: 1rem;
 }
+.hotelInfo {
+  margin: 0 1rem;
+}
+
 .list-control {
   margin: 0 1rem;
   display: grid;
