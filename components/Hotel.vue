@@ -5,17 +5,15 @@
       query: { dateCheckIn, dateCheckOut, adultsNumber }
     }"
   >
-    <div>
-      <ul class="hotels-container">
-        <li :key="id">
-          <img :src="hotelImg" :alt="hotelName" />
-          <div>
-            <h4>{{ hotelName }}</h4>
-            <p>{{ price }}</p>
-          </div>
-        </li>
-      </ul>
-    </div>
+    <ul class="hotels-container">
+      <li :key="id">
+        <img :src="hotelImg" :alt="hotelName" />
+        <div class="info">
+          <h4>{{ hotelName }}</h4>
+          <p>{{ price }}</p>
+        </div>
+      </li>
+    </ul>
   </nuxt-link>
 </template>
 
@@ -45,12 +43,17 @@ export default {
 .hotels-container li {
   width: 100%;
   display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   background: var(--bg-secondary);
   padding: 1rem 2rem;
   border-radius: 0.25rem;
   text-align: left;
+}
+
+.info {
+  width: 12rem;
+  margin: 2rem;
 }
 
 .hotels-container h4 {

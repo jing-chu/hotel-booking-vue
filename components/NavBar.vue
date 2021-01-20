@@ -4,9 +4,6 @@
       <h1 class="title">Book A Hotel</h1>
       <ul>
         <li>
-          <nuxt-link to="/">Logout</nuxt-link>
-        </li>
-        <li>
           <nuxt-link to="/hotels">Search</nuxt-link>
         </li>
       </ul>

@@ -1,45 +1,49 @@
 <template>
   <div>
     <div class="main-container">
-      <form class="form" @submit.prevent="submitForm">
-        <div class="form-control">
-          <label for="city">City</label>
-          <input class="input" type="text" v-model="cityName" name="city" />
-        </div>
-        <div class="form-control">
-          <label for="dateFrom">Check In</label>
-          <input class="input" type="date" v-model="dateCheckIn" />
-        </div>
-        <div class="form-control">
-          <label for="dateTo">Check Out</label>
-          <input class="input" type="date" v-model="dateCheckOut" />
-        </div>
-        <div class="form-control">
-          <label for="city">Adults</label>
-          <input
-            type="number"
-            class="input"
-            v-model="adultsNumber"
-            name="adults"
+      <div>
+        <form class="form" @submit.prevent="submitForm">
+          <div class="form-control">
+            <label for="city">City</label>
+            <input class="input" type="text" v-model="cityName" name="city" />
+          </div>
+          <div class="form-control">
+            <label for="dateFrom">Check In</label>
+            <input class="input" type="date" v-model="dateCheckIn" />
+          </div>
+          <div class="form-control">
+            <label for="dateTo">Check Out</label>
+            <input class="input" type="date" v-model="dateCheckOut" />
+          </div>
+          <div class="form-control">
+            <label for="city">Adults</label>
+            <input
+              type="number"
+              class="input"
+              v-model="adultsNumber"
+              name="adults"
+            />
+          </div>
+          <div>
+            <button type="submit" class="btn">Search</button>
+          </div>
+        </form>
+      </div>
+      <div>
+        <p class="loading" v-if="isLoading">Loading...</p>
+        <div v-else>
+          <Hotel
+            v-for="hotel in hotels"
+            :key="hotel.id"
+            :id="hotel.id"
+            :hotelName="hotel.name"
+            :hotelImg="hotel.thumbnailUrl"
+            :price="hotel.ratePlan.price.current"
+            :dateCheckIn="dateCheckIn"
+            :dateCheckOut="dateCheckOut"
+            :adultsNumber="adultsNumber"
           />
         </div>
-        <div>
-          <button type="submit" class="btn">Search</button>
-        </div>
-      </form>
-      <p class="loading" v-if="isLoading">Loading...</p>
-      <div v-else>
-        <Hotel
-          v-for="hotel in hotels"
-          :key="hotel.id"
-          :id="hotel.id"
-          :hotelName="hotel.name"
-          :hotelImg="hotel.thumbnailUrl"
-          :price="hotel.ratePlan.price.current"
-          :dateCheckIn="dateCheckIn"
-          :dateCheckOut="dateCheckOut"
-          :adultsNumber="adultsNumber"
-        />
       </div>
     </div>
   </div>
