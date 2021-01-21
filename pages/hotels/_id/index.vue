@@ -135,7 +135,6 @@ export default {
   },
 
   created() {
-    console.dir(this.$route);
     const options = {
       method: "GET",
       url: "https://hotels4.p.rapidapi.com/properties/get-details",

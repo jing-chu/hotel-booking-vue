@@ -79,7 +79,10 @@ export default {
   methods: {
     submitForm() {
       if (
-        (this.cityName, this.dateCheckIn, this.dateCheckOut, this.adultsNumber)
+        this.cityName &&
+        this.dateCheckIn &&
+        this.dateCheckOut &&
+        this.adultsNumber
       ) {
         this.isLoading = true;
         const options = {

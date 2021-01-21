@@ -4,7 +4,7 @@
       <h1 class="title">Book A Hotel</h1>
       <ul>
         <li>
-          <nuxt-link to="/hotels">Search</nuxt-link>
+          <nuxt-link v-if="showLogout" to="/hotels">Search</nuxt-link>
         </li>
         <li v-if="showLogout" @click="hideLogout">
           <nuxt-link to="/">Logout</nuxt-link>
