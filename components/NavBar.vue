@@ -6,6 +6,9 @@
         <li>
           <nuxt-link to="/hotels">Search</nuxt-link>
         </li>
+        <li v-if="showLogout" @click="hideLogout">
+          <nuxt-link to="/">Logout</nuxt-link>
+        </li>
       </ul>
     </div>
     <ModePicker />
@@ -17,8 +20,27 @@ import ModePicker from "../components/ModePicker";
 
 export default {
   name: "NavBar",
+
+  data() {
+    return {
+      showLogout: false
+    };
+  },
+
   components: {
     ModePicker
+  },
+
+  created() {
+    this.$nuxt.$on("show-logout", value => {
+      this.showLogout = value;
+    });
+  },
+
+  methods: {
+    hideLogout: function() {
+      this.showLogout = false;
+    }
   }
 };
 </script>

@@ -16,7 +16,7 @@
         <input id="password" type="text" />
       </div>
       <nuxt-link to="/hotels">
-        <button type="submit" class="btn">Login</button>
+        <button type="submit" @click="handleLogout" class="btn">Login</button>
       </nuxt-link>
     </form>
   </div>
@@ -35,6 +35,12 @@ export default {
         }
       ]
     };
+  },
+
+  methods: {
+    handleLogout: function() {
+      this.$nuxt.$emit("show-logout", true);
+    }
   }
 };
 </script>

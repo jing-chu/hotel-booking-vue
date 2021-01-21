@@ -28,7 +28,7 @@
               class="input"
               v-model="adultsNumber"
               name="adults"
-              placeholder="0"
+              placeholder="1"
             />
           </div>
           <div>
