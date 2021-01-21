@@ -194,7 +194,7 @@ export default {
 
   head() {
     return {
-      title: "Hotel informarion",
+      title: this.hotel.name,
       meta: [
         {
           hid: "hotel searching and booking",
