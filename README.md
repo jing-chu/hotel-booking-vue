@@ -1,5 +1,7 @@
 # hotel-booking
 
+Deployed on [Vercel](https://hotel-booking-vue.vercel.app): https://hotel-booking-vue.vercel.app
+
 ## Build Setup
 
 ```bash
